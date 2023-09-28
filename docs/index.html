@@ -1,19 +1,463 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Contest</title>
+
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css">
+    <!-- End Plugin css for this page -->
+
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="static/css/style.css">
+    <!-- End layout styles -->
+
+    <link rel="icon" type="image/x-icon" href="static/img/Contest.ico">
+
+    <style>
+        .code-block{
+            height: 200px;
+        }
+
+        .text-brand{
+            font-size: 14pt;
+        }
+        .logo-brand{
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            max-width: 200px;
+            padding: 10px;
+        }
+
+        .technologies-card{
+            padding: 0 !important;
+            margin-bottom: 20px;
+        }
+
+        .row{
+            margin-bottom: 20px !important;
+        }
+
+        pre{
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
+<div class="fixed-top d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal">
+        <a href="{{route('index')}}" style="text-decoration: none; color: black">
+            <img src="static/img/Contest.png" style="width: 30px; height: 30px">
+            VOYADGER CONTEST
+        </a>
+    </h5>
+</div>
 
-<center>
-    <h1>Contest</h1>
-</center>
+<div class="main-panel align-items-center">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1>Contest</h1>
+        <p class="lead">Создавайте задания для своей компании, чтобы лучше отбирать и тестировать персонал</p>
+    </div>
 
-<p>test</p>
+    <div class="content-wrapper" style="width: 80vw">
+        <!-- Код -->
+        <div class="row">
+            <div class="col-xl-8 col-sm-6 grid-margin stretch-card">
+                <div class="content-wrapper">
+                    <h2>Задания на программирование</h2>
+                    <p>Создавайте собственные задания на программирование для ваших сотрудников или студентов. Это поможет протестировать знания, необходимые именно вам</p>
+                </div>
+            </div>
 
+            <div class="col-xl-4 col-sm-6 grid-margin stretch-card">
+                <div class="content-wrapper">
+                    <pre class="language-py code-block" ><code class="js-code"></code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Формулы -->
+        <div class="row">
+            <div class="col-xl-4 col-sm-6 grid-margin stretch-card">
+                <div class="content-wrapper" style="background: #f6f7f8; border-radius: 5px">
+                    \begin{align*}
+                    t _ { 1 } + t _ { 2 } = \frac { ( 2 L / c ) \sqrt { 1 - u ^ { 2 } / c ^ { 2 } } } { 1 - u ^ { 2 } / c ^ { 2 } } = \frac { 2 L / c } { \sqrt { 1 - u ^ { 2 } / c ^ { 2 } } }
+                    \end{align*}
+                </div>
+            </div>
+
+            <div class="col-xl-8 col-sm-6 grid-margin stretch-card">
+                <div class="content-wrapper">
+                    <h2>Формулы LaTeX</h2>
+                    <p>Используйте математические формулы в формате LaTeX для подробного описания заданий</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Код -->
+        <div class="row">
+            <div class="col-xl-8 col-sm-6 grid-margin stretch-card">
+                <div class="content-wrapper">
+                    <h2>MarkDown</h2>
+                    <p>Описывайте задания в разметке MarkDown. Экономьте время, используя удобный формат</p>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-sm-6 grid-margin stretch-card">
+                <div class="content-wrapper">
+<pre>
+| # |      Город      |    человек |
+|:--|:---------------:|-----------:|
+| 1 |     Москва      | 13 010 112 |
+| 2 | Санкт-Петербург |  5 601 911 |
+| 3 |   Новосибирск   |  1 633 595 |
+| 4 |  Екатеринбург   |  1 588 665 |
+</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Формулы -->
+        <div class="row">
+            <div class="col-xl-4 col-sm-6 grid-margin stretch-card">
+                <div class="content-wrapper" style="padding: 0">
+                    <img src="static/img/pdf-view.png" style="object-fit: cover !important; width: 100%; height: 200px; border-radius: 5px">
+                </div>
+            </div>
+
+            <div class="col-xl-8 col-sm-6 grid-margin stretch-card">
+                <div class="content-wrapper">
+                    <h2>Экспорт в PDF</h2>
+                    <p>Экспортируйте заданий в PDF. Удобно распечатывайте и показывайте на собеседованиях или раздавайте студентам на контрольных или олимпиадах (PDF не поддерживает отображение формул)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Используемые технологии -->
+        <div class="row">
+            <div class="col-xl-12 col-sm-6 grid-margin stretch-card">
+                <div class="content-wrapper">
+                    <h2>Используемые технологии</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-2 ">
+                <div class="content-wrapper technologies-card">
+                    <div class="card">
+                        <a href="https://www.docker.com/" target="_blank">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="static/img/technologies/docker-logo.png" class="logo-brand">
+                                </div>
+                                <br>
+                                <h6 class="text-muted font-weight-normal text-center text-brand">Docker</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 ">
+                <div class="content-wrapper technologies-card">
+                    <div class="card">
+                        <a href="https://docs.docker.com/compose/" target="_blank">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="static/img/technologies/docker-compose.png" class="logo-brand">
+                                </div>
+                                <br>
+                                <h6 class="text-muted font-weight-normal text-center text-brand">Docker compose</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 ">
+                <div class="content-wrapper technologies-card">
+                    <div class="card">
+                        <a href="https://laravel.com/" target="_blank">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="static/img/technologies/Laravel-Logo.png" class="logo-brand">
+                                </div>
+                                <br>
+                                <h6 class="text-muted font-weight-normal text-center text-brand">Laravel</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 ">
+                <div class="content-wrapper technologies-card">
+                    <div class="card">
+                        <a href="https://flask.palletsprojects.com/" target="_blank">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="static/img/technologies/flask-logo.png" class="logo-brand">
+                                </div>
+                                <br>
+                                <h6 class="text-muted font-weight-normal text-center text-brand">Flask</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 ">
+                <div class="content-wrapper technologies-card">
+                    <div class="card">
+                        <a href="https://www.jetbrains.com/phpstorm/" target="_blank">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="static/img/technologies/PhpStorm-logo.png" class="logo-brand">
+                                </div>
+                                <br>
+                                <h6 class="text-muted font-weight-normal text-center text-brand">PhpStorm</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 ">
+                <div class="content-wrapper technologies-card">
+                    <div class="card">
+                        <a href="https://www.jetbrains.com/ru-ru/pycharm/" target="_blank">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="static/img/technologies/PyCharm-logo.png" class="logo-brand">
+                                </div>
+                                <br>
+                                <h6 class="text-muted font-weight-normal text-center text-brand">PyCharm</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 ">
+                <div class="content-wrapper technologies-card">
+                    <div class="card">
+                        <a href="https://www.mysql.com/" target="_blank">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="static/img/technologies/logo-mysql.png" class="logo-brand">
+                                </div>
+                                <br>
+                                <h6 class="text-muted font-weight-normal text-center text-brand">MySQL</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 ">
+                <div class="content-wrapper technologies-card">
+                    <div class="card">
+                        <a href="https://getbootstrap.com/" target="_blank">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="static/img/technologies/bootstrap-logo.svg" class="logo-brand">
+                                </div>
+                                <br>
+                                <h6 class="text-muted font-weight-normal text-center text-brand">Bootstrap</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 ">
+                <div class="content-wrapper technologies-card">
+                    <div class="card">
+                        <a href="https://swagger.io/" target="_blank">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="static/img/technologies/Swagger-logo.png" class="logo-brand">
+                                </div>
+                                <br>
+                                <h6 class="text-muted font-weight-normal text-center text-brand">Swagger</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 ">
+                <div class="content-wrapper technologies-card">
+                    <div class="card">
+                        <a href="https://codemirror.net/" target="_blank">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="static/img/technologies/codemirror-icon.svg" class="logo-brand">
+                                </div>
+                                <br>
+                                <h6 class="text-muted font-weight-normal text-center text-brand">CodeMirror</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 ">
+                <div class="content-wrapper technologies-card">
+                    <div class="card">
+                        <a href="https://www.json.org/" target="_blank">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="static/img/technologies/JSON_vector_logo.png" class="logo-brand">
+                                </div>
+                                <br>
+                                <h6 class="text-muted font-weight-normal text-center text-brand">JSON</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 ">
+                <div class="content-wrapper technologies-card">
+                    <div class="card">
+                        <a href="https://www.markdownguide.org/" target="_blank">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="static/img/technologies/Markdown-mark.png" class="logo-brand">
+                                </div>
+                                <br>
+                                <h6 class="text-muted font-weight-normal text-center text-brand">Markdown</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 ">
+                <div class="content-wrapper technologies-card">
+                    <div class="card">
+                        <a href="https://github.com/markdown-it/markdown-it" target="_blank">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="static/img/technologies/github-mark.png" class="logo-brand">
+                                </div>
+                                <br>
+                                <h6 class="text-muted font-weight-normal text-center text-brand">markdown-it</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 ">
+                <div class="content-wrapper technologies-card">
+                    <div class="card">
+                        <a href="https://github.com/kaoken/markdown-it-php" target="_blank">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="static/img/technologies/github-mark.png" class="logo-brand">
+                                </div>
+                                <br>
+                                <h6 class="text-muted font-weight-normal text-center text-brand">markdown-it-php</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 ">
+                <div class="content-wrapper technologies-card">
+                    <div class="card">
+                        <a href="https://www.mathjax.org/" target="_blank">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="static/img/technologies/MathJax-logo.png" class="logo-brand">
+                                </div>
+                                <br>
+                                <h6 class="text-muted font-weight-normal text-center text-brand">MathJax</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 ">
+                <div class="content-wrapper technologies-card">
+                    <div class="card">
+                        <a href="https://github.com/barryvdh/laravel-dompdf" target="_blank">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <img src="static/img/technologies/github-mark.png" class="logo-brand">
+                                </div>
+                                <br>
+                                <h6 class="text-muted font-weight-normal text-center text-brand">DOMPDF</h6>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted">
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2023 Все права защищены.
+        <a class="" href="https://github.com/Voyadger-Odin" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            Voyadger-Odin
+        </a>
+        <a class="" href="https://t.me/rosetomorrow" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
+            </svg>
+            rosetomorrow
+        </a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+<!-- plugins:js -->
+<script src="static/vendors/js/vendor.bundle.base.js"></script>
+<script src="static/bootstrap-5.3.1-dist/js/bootstrap.js"></script>
+
+
+<script id="MathJax-script" src="static/vendors/mathjax/math-jax.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-python.min.js"></script>
+<!-- endinject -->
+
+<!-- Plugin js for this page -->
+        <script>
+            // jquery & prism js
+
+            let code =
+                `# Python
+a, b = map(int, input().split())
+print(a + b)`;
+
+            code = code.split('');
+
+            // let duration = 7000;// ms   // duration/code.length
+
+            let index = 0;
+
+
+            var interval = setInterval(()=> {
+                if (!(index < code.length)) clearInterval(interval);
+
+                $('code').append(code[index]);
+
+                Prism.highlightElement($('.js-code')[0]);
+
+                index++;
+            }, 40);
+
+
+            $(document).ready(function () {
+                // MarkDown
+                MathJax.typeset()
+            });
+
+        </script>
+<!-- End plugin js for this page -->
 </body>
 </html>
