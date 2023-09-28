@@ -36,6 +36,7 @@ $user = Auth::user();
 
     <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark" href="{{route('index')}}">Главная</a>
+        <a class="p-2 text-dark " href="{{route('review')}}">Обзор</a>
         <a class="p-2 text-dark " href="{{route('info')}}">Компиляторы и ошибки</a>
 
         @if(Auth::check())

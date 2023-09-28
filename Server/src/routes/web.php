@@ -18,6 +18,11 @@ Route::get('/info', function () {
     return view('info');
 })->name('info');
 
+Route::get('/review', function () {
+    return view('review');
+})->name('review');
+
+
 //---------------- LOGIN ----------------
 // Login
 Route::get('/login', function () {
