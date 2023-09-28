@@ -1,0 +1,119 @@
+version: '3.8'
+
+networks:
+  contest-network:
+    external: true
+    name: contest-network
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - ${PORT_NGINX_LOCAL}:80
+    volumes:
+      # Брать файл конфигурации nginx из своей файловой системы (ro - read only)
+      - ./config/nginx/conf.d/:/etc/nginx/conf.d/:ro
+      # Общая папка проекта в своей файловой системе
+      - ${SITE_LOCAL_PATH}:${SITE_PATH}
+    depends_on:
+      - php
+      - mysql
+      - redis
+      # Административные контейнеры
+      - php-my-admin
+      - php-redis-admin
+    networks:
+      - contest-network
+
+  php:
+    build:
+      context: dockerfiles
+      dockerfile: php.Dockerfile
+    volumes:
+      # Общая папка проекта в своей файловой системе
+      - ${SITE_LOCAL_PATH}:${SITE_PATH}
+    networks:
+      - contest-network
+
+  mysql:
+    image: mysql:8.0
+    ports:
+      - ${PORT_MYSQL_LOCAL}:3306
+    volumes:
+      # Записывать данные базы данных в свою файловую систему для сохранения
+      - ./dbdata/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    networks:
+      - contest-network
+
+  redis:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - ${PORT_REDIS_LOCAL}:6379
+    volumes:
+      # Записывать данные redis в свою файловую систему для сохранения
+      - ./dbdata/redis:/data
+      - ./config/redis/redis.conf:/etc/redis/redis.conf
+    environment:
+      REDIS_USERNAME: redis
+    networks:
+      - contest-network
+
+  #----------------------- Административные контейнеры -----------------------
+
+  php-my-admin:
+    image: phpmyadmin:5.2.0
+    restart: always
+    ports:
+      # Прокинутый порт в свою локальную систему (в контейнерах использовать 80)
+      - ${PORT_PHPMYADMIN_LOCAL}:80
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    depends_on:
+      - mysql
+    networks:
+      - contest-network
+
+  php-redis-admin:
+    image: erikdubbelboer/phpredisadmin
+    environment:
+      REDIS_1_HOST: redis
+      REDIS_1_NAME: predis
+
+    ports:
+      - ${PORT_PHPREDISADMIN_LOCAL}:80
+    networks:
+      - contest-network
+    depends_on:
+      - redis
+
+  #----------------------- Служебные контейнеры -----------------------
+
+  composer:
+    build:
+      context: dockerfiles
+      dockerfile: composer.Dockerfile
+    volumes:
+      # Общая папка проекта в своей файловой системе
+      - ${SITE_LOCAL_PATH}:${SITE_PATH}
+    networks:
+      - contest-network
+
+  artisan:
+    build:
+      context: dockerfiles
+      dockerfile: php.Dockerfile
+    volumes:
+      # Общая папка проекта в своей файловой системе
+      - ${SITE_LOCAL_PATH}:${SITE_PATH}
+    entrypoint: ["php", "${SITE_PATH}/artisan"]
+    networks:
+      - contest-network

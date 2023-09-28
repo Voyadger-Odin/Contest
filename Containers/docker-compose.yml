@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  # container-python-3.11
+  container-python-3.11:
+    image: python:3.11
+    volumes:
+      - ${CONTAINERS}container-python-3.11/src/main.py:${WORKING_DIR}main.py
+    working_dir: ${WORKING_DIR}
+    entrypoint: [ "bash", "-c", "echo 'starting' && python3 main.py"]
+
+  # C++
+  container-gcc-13.1:
+    image: gcc:13.1
+    volumes:
+      - ${CONTAINERS}container-gcc-13.1/src/main.cpp:${WORKING_DIR}main.cpp
+    working_dir: ${WORKING_DIR}
+    entrypoint: [ "bash", "-c", "g++ main.cpp -o main && echo 'starting' && ./main" ]
+
+  # Java
+  container-java-17:
+    image: eclipse-temurin:17-jdk-jammy
+    volumes:
+      - ${CONTAINERS}container-java-17/src/main.java:${WORKING_DIR}main.java
+    working_dir: ${WORKING_DIR}
+    entrypoint: [ "bash", "-c", "echo 'starting' && java main.java" ]

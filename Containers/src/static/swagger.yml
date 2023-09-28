@@ -1,0 +1,116 @@
+openapi: 3.0.0
+info:
+  title: Contest - инструмент тестирования персонала
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000/api/
+    description: Dev server
+
+paths:
+  /send-solution:
+    post:
+      summary: Отправка решения
+      tags:
+        - Contest
+      operationId: sendCode
+      parameters:
+        - name: code
+          in: query
+          required: true
+          description: Код для проверки
+          schema:
+            type: string
+          example: "your code"
+
+        - name: language
+          in: query
+          required: true
+          description: Язык программирования
+          schema:
+            type: string
+          example: "python-3.11"
+
+        - name: user_id
+          in: query
+          required: true
+          description: ID пользователя
+          schema:
+            type: integer
+          example: 1
+
+        - name: task_id
+          in: query
+          required: true
+          description: ID задачи
+          schema:
+            type: integer
+          example: 1
+
+        - name: tests
+          in: query
+          required: true
+          description: Список тестов
+          schema:
+            type: string
+          example: "{\"maxtime\":1,\"memory_size\":256,\"tests\":[{\"stdin\":\"0\",\"stdout\":\"0\"}]}"
+
+        - name: url_save_solution
+          in: query
+          required: true
+          description: URL для сохранения параметров попытки
+          schema:
+            type: string
+          example: "http:/localhost:8000/api/save_solution"
+
+        - name: url_set_solution_result
+          in: query
+          required: true
+          description: URL для сохранения результатов попытки
+          schema:
+            type: string
+          example: "http:/localhost:8000/api/set_solution_result"
+
+      responses:
+        "200":
+          description: Успешная отправка решения
+          content:
+            application/json:
+              example: "ok"
+        "default":
+          description: Неверные параметры
+          content:
+            application/json:
+              example: "params error"
+
+  /compilers:
+    get:
+      summary: Отправка решения
+      tags:
+        - Compilers
+      responses:
+        "200":
+          description: Успешная авторизация
+          content:
+            application/json:
+              example:
+                python-3.11:
+                  compiler: container-python-3.11
+                  compiler-name: python-3.11
+                  language-name: python
+                  language-codemirror-name: python
+                  language-version: '3.11'
+                  file-name: main.py
+                c++-13.1:
+                  compiler: container-gcc-13.1
+                  compiler-name: gcc-13.1
+                  language-name: c++
+                  language-codemirror-name: text/x-c++src
+                  language-version: '3.1'
+                  file-name: main.cpp
+                java-17:
+                  compiler: container-java-17
+                  compiler-name: java-17
+                  language-name: java
+                  language-codemirror-name: text/x-java
+                  language-version: '17'
+                  file-name: main.java
