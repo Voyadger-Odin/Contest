@@ -3,7 +3,8 @@
 int main()
 {
     int a;
-    std::cin >> a;
-    std::cout << a * 2 << "\n";
+  	int b;
+    std::cin >> a >> b;
+    std::cout << a + b << "\n";
     return 0;
 }

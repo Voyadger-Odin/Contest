@@ -108,9 +108,7 @@ $user = Auth::user();
                         <div class="card">
                         <textarea class="editor-area" id="editor-area">
 @if($lastSolution)
-{{$lastSolution->code}}@else
-a = int(input())
-print(a * 2)@endif
+{{$lastSolution->code}}@endif
 </textarea>
                         </div>
                         <br>
