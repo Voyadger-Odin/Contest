@@ -10,7 +10,7 @@
             <br>
 
             <label for="basic-url">Название</label>
-            <input type="text" name="taskTitle" class="form-control" value="{{$taskSelected->title}}">
+            <input type="text" name="taskTitle" class="form-control" oninput="editTaskTitle(this.value)" value="{{$taskSelected->title}}">
             <br>
 
             <label for="basic-url">Описание (Формат MarkDown)</label>
@@ -31,6 +31,11 @@
 
         <!-- View -->
         <div class="col-xl-6 grid-margin">
+            <h1 class="text-center" id="task-title">
+                {{$taskSelected->title}}
+            </h1>
+            <br>
+
             <div class="task-info">
                 <table class="task-info-table">
                     <thead>

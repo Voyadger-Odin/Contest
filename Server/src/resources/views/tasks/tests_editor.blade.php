@@ -2,7 +2,13 @@
 @extends('layout.main')
 
 @section('title')
-    Contest
+    @if($tasksSelectedGroup == null and $taskSelected == null)
+        Редактор заданий
+    @elseif($tasksSelectedGroup != null and $taskSelected == null)
+        {{$tasksSelectedGroup->title}}
+    @elseif($tasksSelectedGroup != null and $taskSelected != null)
+        {{$taskSelected->title}} - {{$tasksSelectedGroup->title}}
+    @endif
 @endsection
 
 <!-- Plugin css for this page -->

@@ -39,11 +39,9 @@ function sendCode(csrf, send_solution_url, user_id, task_id)
     data.append('user_id', user_id)
     data.append('task_id', task_id)
 
-    httpRequest(send_solution_url, 'POST', data, false, callback=sendCodeCallback)
-}
-function sendCodeCallback(response)
-{
-    location.reload()
+    httpRequest(send_solution_url, 'POST', data, false, callback=function () {
+        location.reload()
+    })
 }
 
 

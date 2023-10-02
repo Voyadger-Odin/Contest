@@ -1,14 +1,8 @@
 
 @extends('layout.main')
 
-@section('page_info')
-    <?php
-    $PAGE_SELECTED = 'Calendar';
-    ?>
-@endsection
-
 @section('title')
-    Info
+    Компиляторы и значения ошибок
 @endsection
 
 @section('body')

@@ -1,15 +1,8 @@
 @extends('layout.main')
 
-@section('page_info')
-    <?php
-    $PAGE_FULL = true;
-    ?>
-@endsection
-
 @section('title')
     Регистрация
 @endsection
-
 
 @section('body')
 
@@ -35,7 +28,7 @@
                                     <input type="password" name="password" class="form-control p_input">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary btn-block enter-btn">Регистрация</button>
+                                    <button type="submit" class="btn btn-light btn-block enter-btn">Регистрация</button>
                                 </div>
                                 <p class="sign-up text-center">Уже есть аккаунт? <a href="{{route('login')}}">Войти</a></p>
                             </form>

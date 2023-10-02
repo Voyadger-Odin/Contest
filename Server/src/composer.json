@@ -12,7 +12,8 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "predis/predis": "^2.2",
-        "xemlock/php-latex": "dev-master"
+        "xemlock/php-latex": "dev-master",
+        "barryvdh/laravel-dompdf": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -32,7 +33,9 @@
         "files": [
             "app/Support/Helpers/status.php",
             "app/Support/Helpers/compiler.php",
-            "app/Support/Helpers/declination.php"
+            "app/Support/Helpers/declination.php",
+            "app/Support/Helpers/tasks.php",
+            "app/Support/Helpers/solutions.php"
         ]
     },
     "autoload-dev": {

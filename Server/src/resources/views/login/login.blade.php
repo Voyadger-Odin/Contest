@@ -1,10 +1,6 @@
 
 @extends('layout.main')
 
-@section('page_info')
-
-@endsection
-
 @section('title')
     Логин
 @endsection
@@ -31,7 +27,7 @@
                                     <input type="password" name="password" class="form-control p_input">
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary btn-block enter-btn">Войти</button>
+                                    <button type="submit" class="btn btn-light btn-block enter-btn">Войти</button>
                                 </div>
                                 <p class="sign-up">Нет аккаунта? <a href="{{route('register')}}">Регистрация</a></p>
                             </form>

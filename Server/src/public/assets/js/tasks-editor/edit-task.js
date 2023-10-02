@@ -7,15 +7,17 @@ let taskBtnSave = null
 let taskError = null
 let editorTaskDescription = null
 let editorTaskTest = null
+let taskTitle = null
 
 $(document).ready(function () {
     // Find elements
-    taskDescriptionView = $('#task-description-view')
-    taskDescription = $('#task-description')
+    taskDescriptionView = document.getElementById('task-description-view')
+    taskDescription = document.getElementById('task-description')
     taskMaxSeconds = document.getElementById('task-max-seconds')
     taskMaxMemory = document.getElementById('task-max-memory')
     taskBtnSave = document.getElementById('task-btn-save')
     taskError = document.getElementById('task-error')
+    taskTitle = document.getElementById('task-title')
 
     // Description
     let inputDescription = $('#task-description')[0]
@@ -41,9 +43,13 @@ $(document).ready(function () {
     });
 
     // Set value elements
-    createMarkdownDescription(taskDescription.val())
+    createMarkdownDescription(taskDescription.value)
     createTestsDescription(editorTaskTest.getValue())
 });
+
+function editTaskTitle(data){
+    taskTitle.innerHTML = data
+}
 
 function descriptionFormater(data){
     return data.replaceAll('\\\\', '\\\\\\\\')
@@ -55,7 +61,7 @@ function descriptionUnFormater(data){
 function createMarkdownDescription(data){
     data = descriptionFormater(data);
     let result = md.render(data).replaceAll("&amp;", "&");
-    taskDescriptionView.html(result)
+    taskDescriptionView.innerHTML = result
     MathJax.typeset()
 }
 

@@ -1,2 +1,3 @@
-a = int(input())
-print(a * 2)
+# Python
+a, b = map(int, input().split())
+print(a + b)

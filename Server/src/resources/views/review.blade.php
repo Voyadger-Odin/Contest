@@ -2,7 +2,7 @@
 @extends('layout.main')
 
 @section('title')
-    Contest
+    Обзор
 @endsection
 
 <!-- Plugin css for this page -->

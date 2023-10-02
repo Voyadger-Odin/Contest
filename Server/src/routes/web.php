@@ -64,7 +64,7 @@ Route::group(['middleware' => ['check-auth']], function (){
                 ->where('id', '[0-9]+')
                 ->name('task');
             // Список заданий
-            Route::get('/', 'tasksList')->name('tasks');
+            Route::get('/', 'tasksGroupList')->name('tasks');
         });
 
         Route::group(['middleware' => ['check-admin']], function (){

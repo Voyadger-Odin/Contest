@@ -16,7 +16,7 @@ $user = Auth::user();
 @endsection
 
 @section('title')
-    Contest
+    {{$task->title}}
 @endsection
 
 @section('body')

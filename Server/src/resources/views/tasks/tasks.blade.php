@@ -8,14 +8,8 @@ $user = Auth::user();
 
 @extends('layout.main')
 
-@section('page_info')
-    <?php
-    $PAGE_SELECTED = 'Calendar';
-    ?>
-@endsection
-
 @section('title')
-    Contest
+    Список заданий
 @endsection
 
 @section('body')

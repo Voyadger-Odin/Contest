@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\PreviousSolutionsController;
-use App\Http\Controllers\TasksController;
 use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,5 +30,3 @@ Route::post('/set_solution_result', [PreviousSolutionsController::class, 'setSol
 
 
 Route::get('/test', [TestController::class, 'test']);
-
-Route::get('/tasks/{id}', [TasksController::class, 'getTests']);

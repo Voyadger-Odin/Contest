@@ -1,49 +1,14 @@
 
 @extends('layout.main')
 
-@section('page_info')
-    <?php
-    $PAGE_SELECTED = 'Calendar';
-    ?>
-@endsection
-
 @section('title')
     Contest
 @endsection
 
 <!-- Plugin css for this page -->
 @section('plugin_css_for_this_page')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css">
-
-    <style>
-        .code-block{
-            height: 200px;
-        }
-
-        .text-brand{
-            font-size: 14pt;
-        }
-        .logo-brand{
-            width: 100%;
-            height: 200px;
-            object-fit: contain;
-            max-width: 200px;
-            padding: 10px;
-        }
-
-        .technologies-card{
-            padding: 0 !important;
-            margin-bottom: 20px;
-        }
-
-        .row{
-            margin-bottom: 20px !important;
-        }
-
-        pre{
-            border-radius: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{asset('assets/css/index.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/vendors/prism/prism-okaidia.min.css')}}">
 @endsection
 <!-- End Plugin css for this page -->
 
@@ -132,7 +97,7 @@
             <div class="row">
                 <div class="col-xl-12 col-sm-6 grid-margin stretch-card">
                     <div class="content-wrapper">
-                        <h2>Используемые технологии</h2>
+                        <h2>Технологии и инструменты</h2>
                     </div>
                 </div>
             </div>
@@ -168,6 +133,11 @@
                         'name' => 'PyCharm',
                         'img' => asset('assets/img/technologies/PyCharm-logo.png'),
                         'link' => 'https://www.jetbrains.com/ru-ru/pycharm/',
+                    ],
+                    [
+                        'name' => 'Postman',
+                        'img' => asset('assets/img/technologies/postman-icon.png'),
+                        'link' => 'https://www.postman.com/',
                     ],
                     [
                         'name' => 'MySQL',
@@ -251,43 +221,14 @@
 
 <!-- Plugin js for this page -->
 @section('plugin_js_for_this_page')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/components/prism-python.min.js"></script>
 
+    <!-- Prism -->
+    <script src="{{asset('assets/vendors/prism/prism.min.js')}}"></script>
+    <script src="{{asset('assets/vendors/prism/prism-python.min.js')}}"></script>
+
+    <!-- MathJax -->
     <script id="MathJax-script" src="{{asset('assets/vendors/mathjax/math-jax.js')}}"></script>
 
-    <script>
-        // jquery & prism js
-
-        let code =
-`# Python
-a, b = map(int, input().split())
-print(a + b)`;
-
-        code = code.split('');
-
-        // let duration = 7000;// ms   // duration/code.length
-
-        let index = 0;
-
-
-        var interval = setInterval(()=> {
-            if (!(index < code.length)) clearInterval(interval);
-
-            $('code').append(code[index]);
-
-            Prism.highlightElement($('.js-code')[0]);
-
-            index++;
-        }, 40);
-
-
-        $(document).ready(function () {
-            // MarkDown
-            MathJax.typeset()
-        });
-
-    </script>
+    <script id="MathJax-script" src="{{asset('assets/js/index/index.js')}}"></script>
 @endsection
 <!-- End plugin js for this page -->
