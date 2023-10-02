@@ -4,3 +4,4 @@
 logs
 dbdata/redis/*
 TEST
+.env
