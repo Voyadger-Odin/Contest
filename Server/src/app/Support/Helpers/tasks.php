@@ -7,7 +7,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 
 // Получить список групп тестов
-function getTasksGroupList($all_tasks)
+function getTasksGroupList($all_tasks): TasksGroup
 {
     $tasksGroups = null;
     if ($all_tasks){
@@ -23,12 +23,12 @@ function getTasksGroupList($all_tasks)
 
 
 // Получить задание
-function getTask($task_id): Tasks
+function getTask($task_id): Tasks | null
 {
     return Tasks::find($task_id);
 }
 
-function getTasksGroup($task_group_id): TasksGroup
+function getTasksGroup($task_group_id): TasksGroup | null
 {
     return TasksGroup::find($task_group_id);
 }
@@ -117,8 +117,39 @@ function deleteTasksGroup($task_group_id): bool
     return $tasksGroup->delete();
 }
 
+function setPdfFonts(
+    $fontDirectory,
+    $fontFamily,
+    $fontNameNormalNormal,
+    $fontNameItalicNormal,
+    $fontNameNormalBold,
+    $fontNameItalicBold,
+): void
+{
+    $options = new Options();
+    $options->setChroot($fontDirectory);
+    $pdfCoder = new Dompdf($options);
+
+    $pdfCoder->getFontMetrics()->registerFont(
+        ['family' => $fontFamily, 'style' => 'normal', 'weight' => 'normal'],
+        $fontDirectory . '/' . $fontNameNormalNormal
+    );
+    $pdfCoder->getFontMetrics()->registerFont(
+        ['family' => $fontFamily, 'style' => 'italic', 'weight' => 'normal'],
+        $fontDirectory . '/' . $fontNameItalicNormal
+    );
+    $pdfCoder->getFontMetrics()->registerFont(
+        ['family' => $fontFamily, 'style' => 'normal', 'weight' => 'bold'],
+        $fontDirectory . '/' . $fontNameNormalBold
+    );
+    $pdfCoder->getFontMetrics()->registerFont(
+        ['family' => $fontFamily, 'style' => 'italic', 'weight' => 'bold'],
+        $fontDirectory . '/' . $fontNameItalicBold
+    );
+}
+
 // Получить PDF-файл заданий
-function getTaskPdf($task_id, $attachment=false)
+function getTaskPdf($task_id, $attachment=false): void
 {
     $task = getTask($task_id);
     $tests = getTaskTests($task);
@@ -130,18 +161,22 @@ function getTaskPdf($task_id, $attachment=false)
     ])->render();
 
     // Добавление шрифтов
-    /*
+
     $fontDirectory = public_path() . '/assets/fonts/SanFrancisco'; //change to the diretory where you fonts is located on your server
-    $options = new Options();
-    $options->setChroot($fontDirectory);
-    */
+    setPdfFonts(
+        $fontDirectory,
+        'SF UI Text',
+        'SFUIText-Regular.ttf',
+        'SFUIText-Italic.ttf',
+        'SFUIText-Bold.ttf',
+        'SFUIText-BoldItalic.ttf',
+    );
 
     $pdfCoder = new Dompdf([
         'enable_remote' => true, // Разрешить загружать файлы (картинки)
     ]);
 
     $pdfCoder->loadHtml($html);
-    $pdfCoder->setCss(new Stylesheet($pdfCoder));
     $pdfCoder->render();
     $pdfCoder->stream('', [
         'compress' => false,

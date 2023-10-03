@@ -20,53 +20,51 @@
 <!-- End Plugin css for this page -->
 
 @section('body')
-    <div class="main-panel">
-        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-            <h1 class="display-4">Редактор тестов</h1>
-            <p class="lead">
-                @if($tasksSelectedGroup == null and $taskSelected == null)
-                    Создавайте задания для своей компании, чтобы лучше отбирать и тестировать персонал
-                @elseif($tasksSelectedGroup != null and $taskSelected == null)
-                    {{$tasksSelectedGroup->title}}
-                @elseif($tasksSelectedGroup != null and $taskSelected != null)
-                    {{$taskSelected->title}} ({{$tasksSelectedGroup->title}})
-                @endif
-            </p>
-        </div>
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Редактор тестов</h1>
+        <p class="lead">
+            @if($tasksSelectedGroup == null and $taskSelected == null)
+                Создавайте задания для своей компании, чтобы лучше отбирать и тестировать персонал
+            @elseif($tasksSelectedGroup != null and $taskSelected == null)
+                {{$tasksSelectedGroup->title}}
+            @elseif($tasksSelectedGroup != null and $taskSelected != null)
+                {{$taskSelected->title}} ({{$tasksSelectedGroup->title}})
+            @endif
+        </p>
+    </div>
 
-        <div class="content-wrapper" style="width: 100vw">
-            <div class="row">
-                <!-- Groups list -->
-                <div class="col-xl-2 col-sm-6 grid-margin stretch-card">
-                    <div class="content-wrapper">
-                        <!-- Tasks -->
-                        @if($tasksSelectedGroup != null)
-                            @include('tasks.include.tasks-editor-tasks-list')
-                        @endif
-                        <!-- End tasks -->
+    <div class="content-wrapper" style="width: 100vw">
+        <div class="row">
+            <!-- Groups list -->
+            <div class="col-xl-2 col-sm-6 grid-margin stretch-card">
+                <div class="content-wrapper">
+                    <!-- Tasks -->
+                    @if($tasksSelectedGroup != null)
+                        @include('tasks.include.tasks-editor-tasks-list')
+                    @endif
+                    <!-- End tasks -->
 
-                        <!-- Tasks group -->
-                        @include('tasks.include.tasks-editor-tasks-group-list')
-                        <!-- End tasks group -->
-                    </div>
+                    <!-- Tasks group -->
+                    @include('tasks.include.tasks-editor-tasks-group-list')
+                    <!-- End tasks group -->
                 </div>
-                <!-- End groups list -->
-
-                <!-- Editor -->
-                <div class="col-xl-9 col-sm-6 grid-margin stretch-card">
-                    <div class="content-wrapper">
-
-                        @if($tasksSelectedGroup != null and $taskSelected == null)
-                            <!-- Edit tasks group -->
-                            @include('tasks.include.task-editor-tasks-group')
-                        @elseif($tasksSelectedGroup != null and $taskSelected != null)
-                            <!-- Edit task -->
-                            @include('tasks.include.task-editor-task')
-                        @endif
-                    </div>
-                </div>
-                <!-- End editor -->
             </div>
+            <!-- End groups list -->
+
+            <!-- Editor -->
+            <div class="col-xl-9 col-sm-6 grid-margin stretch-card">
+                <div class="content-wrapper">
+
+                    @if($tasksSelectedGroup != null and $taskSelected == null)
+                        <!-- Edit tasks group -->
+                        @include('tasks.include.task-editor-tasks-group')
+                    @elseif($tasksSelectedGroup != null and $taskSelected != null)
+                        <!-- Edit task -->
+                        @include('tasks.include.task-editor-task')
+                    @endif
+                </div>
+            </div>
+            <!-- End editor -->
         </div>
     </div>
 @endsection

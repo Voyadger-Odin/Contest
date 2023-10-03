@@ -58,10 +58,6 @@ class TestController extends Controller
             ]);
         }
 
-        return view('pdf.test', [
-            'task' => $task,
-            'maxtime' => $tests->maxtime,
-            'memory_size' => $tests->memory_size,
-        ]);
+        return view('test');
     }
 }

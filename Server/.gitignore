@@ -2,6 +2,7 @@
 .vscode
 .fleet
 logs
+dbdata/mysql/*
 dbdata/redis/*
 TEST
 .env

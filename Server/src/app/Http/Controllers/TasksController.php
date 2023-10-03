@@ -135,6 +135,15 @@ class TasksController extends Controller
 
     public function taskPdf($task_id)
     {
+        $task = getTask($task_id);
+        $tests = getTaskTests($task);
+
         getTaskPdf($task_id);
+        return view('pdf.task-pdf', [
+            'task' => $task,
+            'maxtime' => $tests->maxtime,
+            'memory_size' => $tests->memory_size,
+        ]);
+        //getTaskPdf($task_id);
     }
 }

@@ -13,8 +13,6 @@ $user = Auth::user();
 @endsection
 
 @section('body')
-    <div class="main-panel">
-
         <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
             <h1 class="display-4">Тесты</h1>
             <p class="lead">Создавайте задания для своей компании, чтобы лучше отбирать и тестировать персонал</p>
@@ -67,7 +65,4 @@ $user = Auth::user();
             </div>
         </div>
         <!-- content-wrapper ends -->
-    </div>
-
-
 @endsection

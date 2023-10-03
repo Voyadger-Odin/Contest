@@ -26,181 +26,176 @@ $user = Auth::user();
         $lastSolution = $task->getLastSolution($user->id);
     ?>
 
-    <div class="main-panel align-items-center">
+    <div class="pricing-header px-3 py-3 pt-md-5 mx-auto text-center">
 
-        <div class="pricing-header px-3 py-3 pt-md-5 mx-auto text-center">
-
-            <h1>
-                @if($user->role == 'admin')
-                    @if($task->active)
-                        @include('include.components.eye-active')
-                    @else
-                        @include('include.components.eye-unactive')
-                    @endif
+        <h1>
+            @if($user->role == 'admin')
+                @if($task->active)
+                    @include('include.components.eye-active')
+                @else
+                    @include('include.components.eye-unactive')
                 @endif
-                {{$task->title}}
+            @endif
+            {{$task->title}}
 
-                @if($task->checkCompleted($user->id))
-                    @include('include.components.checked')
+            @if($task->checkCompleted($user->id))
+                @include('include.components.checked')
+            @endif
+        </h1>
+        <h3>
+            @if($user->role == 'admin')
+                @if($taskGroup->active)
+                    @include('include.components.eye-active')
+                @else
+                    @include('include.components.eye-unactive')
                 @endif
-            </h1>
-            <h3>
-                @if($user->role == 'admin')
-                    @if($taskGroup->active)
-                        @include('include.components.eye-active')
-                    @else
-                        @include('include.components.eye-unactive')
-                    @endif
-                @endif
-                {{$taskGroup->title}}
-            </h3>
-        </div>
+            @endif
+            {{$taskGroup->title}}
+        </h3>
+    </div>
 
-        <div class="content-wrapper" style="width: 70vw">
-            <div class="row">
-                <div class="col-xl-9 col-sm-6 grid-margin stretch-card">
-                    <div class="content-wrapper">
+    <div class="content-wrapper" style="width: 70vw">
+        <div class="row">
+            <div class="col-xl-9 col-sm-6 grid-margin stretch-card">
+                <div class="content-wrapper">
 
-                        <div class="task-info">
-                            <table class="task-info-table">
-                                <thead>
-                                <tr>
-                                    <th>Ограничение времени</th>
-                                    <th>Ограничение памяти</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>{{$maxtime}} {{SecondsName($maxtime)}}</td>
-                                    <td>{{$memory_size}} МБ</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="task-info">
+                        <table class="task-info-table">
+                            <thead>
+                            <tr>
+                                <th>Ограничение времени</th>
+                                <th>Ограничение памяти</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{$maxtime}} {{SecondsName($maxtime)}}</td>
+                                <td>{{$memory_size}} МБ</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                        <br>
+                    <br>
 
-                        <div class="MarkDownWindow" id="MarkDownWindow"></div>
+                    <div class="MarkDownWindow" id="MarkDownWindow"></div>
 
-                        <br>
+                    <br>
 
-                        <?php
-                            //dd($lastSolution);
-                        ?>
+                    <?php
+                        //dd($lastSolution);
+                    ?>
 
-                        <h1>Решение</h1>
-                        <select name="language" id="language" class="custom-select" onchange="languageSelect(this.value)">
-                            <!--<option value="">Выберите язык программирования</option>-->
-                            @foreach(GetCompilersInfo() as $compiler => $compiler_data)
-                                <option
-                                    value="{{$compiler}}"
-                                    @if($lastSolution and ($lastSolution->lang == $compiler))
-                                        selected
-                                    @endif
-                                >
-                                    {{$compiler_data['language-name']}} - {{$compiler_data['language-version']}}
-                                </option>
-                            @endforeach
-                        </select>
+                    <h1>Решение</h1>
+                    <select name="language" id="language" class="custom-select" onchange="languageSelect(this.value)">
+                        <!--<option value="">Выберите язык программирования</option>-->
+                        @foreach(GetCompilersInfo() as $compiler => $compiler_data)
+                            <option
+                                value="{{$compiler}}"
+                                @if($lastSolution and ($lastSolution->lang == $compiler))
+                                    selected
+                                @endif
+                            >
+                                {{$compiler_data['language-name']}} - {{$compiler_data['language-version']}}
+                            </option>
+                        @endforeach
+                    </select>
 
-                        <br><br>
+                    <br><br>
 
-                        <div class="card">
-                        <textarea class="editor-area" id="editor-area">
+                    <div class="card">
+                    <textarea class="editor-area" id="editor-area">
 @if($lastSolution)
 {{$lastSolution->code}}@endif
 </textarea>
-                        </div>
-                        <br>
-
-                        <button onclick="sendCode('{{csrf_token()}}', '{{route('send_solution')}}', {{$user->id}}, {{$task->id}})" class="btn btn-light" style="padding: 10px 20px;">Отправить</button>
-
-                        <br><br>
-
-                        <h4>Предыдущие решения</h4>
-
-                        <?php
-                            $previousSolutions = $user->getPreviousSolutions($task->id);
-                        ?>
-
-                        <br>
-                        @if($previousSolutions->count() > 0)
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Язык</th>
-                                    <th scope="col">Результат</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($previousSolutions as $solution)
-                                    <tr>
-                                        <th scope="row">{{$solution->id}}</th>
-                                        <td>{{$solution->lang}}</td>
-                                        <td>{{GetStatusName($solution->status)}}</td>
-                                        <td>
-                                            <button type="button" class="btn btn-link" onclick="getSolution('{{route('get_solution_result', $solution->id)}}')">
-                                                Решение
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        @else
-                            <p style="color:grey">Здесь будет список решений</p>
-                        @endif
                     </div>
+                    <br>
+
+                    <button onclick="sendCode('{{csrf_token()}}', '{{route('send_solution')}}', {{$user->id}}, {{$task->id}})" class="btn btn-light" style="padding: 10px 20px;">Отправить</button>
+
+                    <br><br>
+
+                    <h4>Предыдущие решения</h4>
+
+                    <?php
+                        $previousSolutions = $user->getPreviousSolutions($task->id);
+                    ?>
+
+                    <br>
+                    @if($previousSolutions->count() > 0)
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Язык</th>
+                                <th scope="col">Результат</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($previousSolutions as $solution)
+                                <tr>
+                                    <th scope="row">{{$solution->id}}</th>
+                                    <td>{{$solution->lang}}</td>
+                                    <td>{{GetStatusName($solution->status)}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-link" onclick="getSolution('{{route('get_solution_result', $solution->id)}}')">
+                                            Решение
+                                        </button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    @else
+                        <p style="color:grey">Здесь будет список решений</p>
+                    @endif
                 </div>
+            </div>
 
-                <!-- Tasks list -->
-                <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-                    <div class="content-wrapper">
-                        <div class="row">
-                            <div class="col-xl-12 grid-margin">
-                                <div class="card text-center align-items-center" style="padding: 10px;">
-                                    <?php
-                                    $task_id = 0;
-                                    ?>
-                                    <h5>Выполнено: {{$taskGroup->getCompletedTasks($user->id)->count()}} из {{$tasksGroup->count()}}</h5>
-                                    <div class="tasks-box">
-                                        @foreach($tasksGroup as $task_group)
-                                            <?php
-                                                $task_id += 1;
-                                            ?>
+            <!-- Tasks list -->
+            <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+                <div class="content-wrapper">
+                    <div class="row">
+                        <div class="col-xl-12 grid-margin">
+                            <div class="card text-center align-items-center" style="padding: 10px;">
+                                <?php
+                                $task_id = 0;
+                                ?>
+                                <h5>Выполнено: {{$taskGroup->getCompletedTasks($user->id)->count()}} из {{$tasksGroup->count()}}</h5>
+                                <div class="tasks-box">
+                                    @foreach($tasksGroup as $task_group)
+                                        <?php
+                                            $task_id += 1;
+                                        ?>
 
 
-                                            <!-- Если текущие задание -->
-                                            @if($task_group->id == $task->id)
-                                                <div class="task-item">
-                                                    <div class="icon icon-box-primary">
-                                                        <span class="mdi mdi-arrow-top-right icon-item">{{$task_id}}</span>
-                                                    </div>
+                                        <!-- Если текущие задание -->
+                                        @if($task_group->id == $task->id)
+                                            <div class="task-item">
+                                                <div class="icon icon-box-primary">
+                                                    <span class="mdi mdi-arrow-top-right icon-item">{{$task_id}}</span>
                                                 </div>
-                                            <!-- Если не текущие задание -->
-                                            @else
-                                                <a href="/tasks/{{$task_group->id}}" class="task-item">
-                                                    <div class="icon {{($task_group->checkCompleted($user->id)) ? 'icon-box-success' : 'icon-box-light'}}">
-                                                        <span class="mdi mdi-arrow-top-right icon-item">{{$task_id}}</span>
-                                                    </div>
-                                                </a>
-                                            @endif
-                                        @endforeach
-                                    </div>
-
-                                    <br>
-                                    <a href="{{route('info')}}" class="text-left">Компиляторы и значения ошибок</a>
+                                            </div>
+                                        <!-- Если не текущие задание -->
+                                        @else
+                                            <a href="/tasks/{{$task_group->id}}" class="task-item">
+                                                <div class="icon {{($task_group->checkCompleted($user->id)) ? 'icon-box-success' : 'icon-box-light'}}">
+                                                    <span class="mdi mdi-arrow-top-right icon-item">{{$task_id}}</span>
+                                                </div>
+                                            </a>
+                                        @endif
+                                    @endforeach
                                 </div>
+
+                                <br>
+                                <a href="{{route('info')}}" class="text-left">Компиляторы и значения ошибок</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- End tasks list -->
             </div>
+            <!-- End tasks list -->
         </div>
-
-
     </div>
 
     <!-- Modal -->
