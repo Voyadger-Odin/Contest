@@ -5,6 +5,10 @@
     Обзор
 @endsection
 
+<?php
+$PAGE_SELECTED = 'review'
+?>
+
 <!-- Plugin css for this page -->
 @section('plugin_css_for_this_page')
 

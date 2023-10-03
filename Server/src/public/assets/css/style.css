@@ -21157,7 +21157,7 @@ div.tagsinput span.tag a {
 .main-panel {
     transition: width 0.25s ease, margin 0.25s ease;
     width: 100%;
-    padding-top: 70px;
+    padding-top: 63px;
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;

@@ -7,7 +7,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 
 // Получить список групп тестов
-function getTasksGroupList($all_tasks): TasksGroup
+function getTasksGroupList($all_tasks)
 {
     $tasksGroups = null;
     if ($all_tasks){

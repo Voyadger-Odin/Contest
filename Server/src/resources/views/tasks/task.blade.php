@@ -19,6 +19,10 @@ $user = Auth::user();
     {{$task->title}}
 @endsection
 
+<?php
+$PAGE_SELECTED = 'tasks'
+?>
+
 @section('body')
 
     <?php

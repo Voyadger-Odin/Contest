@@ -5,6 +5,10 @@
     Компиляторы и значения ошибок
 @endsection
 
+<?php
+$PAGE_SELECTED = 'info'
+?>
+
 @section('body')
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1>Компиляторы и значения ошибок</h1>
